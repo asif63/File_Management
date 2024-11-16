@@ -44,6 +44,25 @@ def main():
         elif choice == '13':
             directory = input("Enter directory to sort files (default is current): ") or "."
             display_results(sort_files_in_directory(directory))
+        elif choice == '14':
+            dir_name = input("Enter directory name to create: ")
+            display_results(create_directory(dir_name))
+        elif choice == '15':
+            dir_name = input("Enter directory name: ")
+            file_name = input("Enter file name: ")
+            display_results(create_file_in_directory(dir_name, file_name))
+        elif choice == '16':
+            dir_name = input("Enter the directory to switch to: ")
+            display_results(change_directory(dir_name))
+        elif choice == '17':
+            src = input("Enter the file to move (with path): ")
+            dest = input("Enter the destination directory: ")
+            display_results(move_file(src, dest))
+        elif choice == '18':
+            file_name = input("Enter file name to read: ")
+            display_results(read_file(file_name))
+        elif choice == '19':
+            display_results(show_memory_map())
         elif choice == '0':
             print("Exiting...")
             break
