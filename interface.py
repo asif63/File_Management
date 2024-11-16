@@ -13,6 +13,12 @@ def display_main_menu():
     print("11. Count directories")
     print("12. Count files")
     print("13. Sort files in directory")
+    print("14. Create a directory")
+    print("15. Create a file in a directory")
+    print("16. Change current directory")
+    print("17. Move a file")
+    print("18. Read from a file")
+    print("19. Show memory map")
     print("0. Exit")
 
 def get_user_input():
