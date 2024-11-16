@@ -63,15 +63,21 @@ def file_details(file_name):
 def sort_file_content(file_name):
     try:
         with open(file_name, 'r') as file:
-            content = file.readlines()
-        content.sort()
+            content = file.read()
+        
+        # Split content into words, sort them, and join them back
+        sorted_content = ' '.join(sorted(content.split()))
+        
+        # Write the sorted content back to the file
         with open(file_name, 'w') as file:
-            file.writelines(content)
-        return f"Content of {file_name} sorted."
+            file.write(sorted_content)
+        
+        return f"Content of {file_name} sorted alphabetically by words."
     except FileNotFoundError:
         return f"File {file_name} not found."
     except Exception as e:
         return f"Error sorting file content: {e}"
+
 
 def list_files_of_extension(extension):
     try:
@@ -86,3 +92,35 @@ def sort_files_in_directory(directory="."):
         return files
     except Exception as e:
         return f"Error sorting files in directory '{directory}': {e}"
+import os
+import shutil
+
+# Previous functions remain unchanged
+
+def create_file_in_directory(directory, file_name):
+    try:
+        os.makedirs(directory, exist_ok=True)
+        file_path = os.path.join(directory, file_name)
+        with open(file_path, 'w') as file:
+            file.write("")
+        return f"File '{file_name}' created in directory '{directory}'."
+    except Exception as e:
+        return f"Error creating file in directory: {e}"
+
+def move_file(src, dest):
+    try:
+        if not os.path.exists(dest):
+            os.makedirs(dest)
+        shutil.move(src, dest)
+        return f"File '{src}' moved to '{dest}'."
+    except Exception as e:
+        return f"Error moving file: {e}"
+
+def read_file(file_name):
+    try:
+        with open(file_name, 'r') as file:
+            content = file.read()
+        return f"Content of '{file_name}':\n{content}"
+    except Exception as e:
+        return f"Error reading file: {e}"
+
