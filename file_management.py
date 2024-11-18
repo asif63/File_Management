@@ -1,10 +1,13 @@
 import os
 
-def list_all_files_and_dirs():
+def list_all_files_and_dirs(path=None):
     try:
-        return os.listdir()
+        if path is None:
+            path = os.getcwd()  # Default to the current working directory if no path is provided
+        return os.listdir(path)
     except Exception as e:
         return f"Error listing files and directories: {e}"
+
 
 def create_file(file_name):
     try:
@@ -79,11 +82,14 @@ def sort_file_content(file_name):
         return f"Error sorting file content: {e}"
 
 
-def list_files_of_extension(extension):
+def list_files_of_extension(extension, path=None):
     try:
-        return [f for f in os.listdir() if f.endswith(extension)]
+        if path is None:
+            path = os.getcwd()  # Default to the current working directory
+        return [f for f in os.listdir(path) if f.endswith(extension) and os.path.isfile(os.path.join(path, f))]
     except Exception as e:
         return f"Error listing files of extension '{extension}': {e}"
+
 
 def sort_files_in_directory(directory="."):
     try:
